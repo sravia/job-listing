@@ -1,0 +1,33 @@
+<div class="navbar navbar-default" ng-controller="NavbarController">
+    <div class="container"  auto-active>
+        <div class="nav navbar-nav">
+            <ul class="nav navbar-nav">
+                <li ng-repeat="item in menu"  class="{{item.link == currentUrl ? 'active':''}}">
+                    <a href="{{item.link}}">{{item.title}}</a>
+                </li>
+                <li ng-repeat="item in adminMenu" ng-show="currentUser">
+                    <a href="{{item.link}}">{{item.title}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="nav navbar-nav-right">
+            <ul class="nav navbar-nav" ng-hide="currentUser">
+                <li>
+                    <a href="/login">Ielogoties</a>
+                </li>
+                <li>
+                    <a href="/signup">Reģistrēties</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav" ng-show="currentUser">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Sveiki, {{ currentUser.email }} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="logout()"><span class="glyphicon-log-out"></span> Izlogoties</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>

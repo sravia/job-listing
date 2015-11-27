@@ -1,0 +1,26 @@
+<section class="job">
+    <div class="job-header">
+        <h2>{{job.profession}}</h2>
+        <div class="worktime">
+            <span class="worktime {{getWorkTime(job.worktime).css}}">{{getWorkTime(job.worktime).title}}</span>
+        </div>
+        <div class="company">
+            {{job.company}}
+        </div>
+        <div class="location">
+            <img ng-src="images/joblocation.png" />
+            {{job.location}}
+        </div>
+        <div class="date">
+            <img ng-src="images/jobdate.png" />
+            <span>Pievienots {{date}}</span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="job-content" ng-bind-html="job.description">
+        </div>
+        <div class="job-apply">
+            apply button
+        </div>
+    </div>
+</section>

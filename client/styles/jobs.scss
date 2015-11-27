@@ -1,0 +1,248 @@
+@media only screen and (min-width : 320px) {
+  .create-job {
+    float:none;
+    margin:0 auto;
+
+    form {
+      margin-top: 50px;
+    }
+  }
+
+
+  .job {
+    .job-header {
+      font: 14px/normal 'Varela Round', sans-serif;
+      text-align: center;
+      padding: 10px 0 ;
+      background: #fafafa;
+      border-bottom: 1px solid #ccc;
+      color: #9a9b9e;
+
+      h2 {
+        font-size: 34px;
+        font-weight: 400;
+        color: #797979;
+        margin: 33px 0;
+      }
+
+      .company, .location, .date {
+        display:inline-block;
+        padding: 0 20px 0 10px;
+      }
+
+      .company, .location{
+        border-right: 1px solid #ccc;
+      }
+
+      .location {
+        img{
+          width:20px;
+          height:20px;
+          margin-bottom:5px
+        }
+      }
+
+      .date {
+        img{
+          width:20px;
+          height:20px;
+          margin-bottom:5px
+        }
+      }
+
+      .worktime {
+          margin-bottom: 20px;
+        .worktime{
+          font: 700 12px/normal Montserrat, sans-serif;
+          text-transform: uppercase;
+          text-align: center;
+          color: #fff;
+          padding: 3px 10px;
+          border-radius: 4px;
+          width: 160px;
+        }
+
+        .parttime{
+          background: #f08d3c;
+        }
+
+        .fulltime{
+          background: #01be7e;
+        }
+
+        .internship {
+          background: #00aabc;
+        }
+      }
+    }
+
+    .job-content {
+       margin: 20px 0;
+      color: #8c8d90;
+      line-height: 24px;
+    }
+
+    .job-apply {
+
+    }
+  }
+
+  .jobs-container {
+    margin-top: 20px;
+    .search {
+      padding: 20px 20px 10px 20px;
+      background: #fafafa;
+      border: 1px solid #e7e7e7;
+      .row {
+
+        div {
+          input {
+            outline: 0;
+            width:100%;
+            font-size: 16px;
+            padding: 5px 14px;
+            background: #fff;
+            border: 1px solid #e7e7e7;
+            border-radius: 4px;
+            margin-bottom: 10px;
+          }
+
+          .div {
+            width:100%;
+          }
+        }
+
+        .worktime, .profession {
+          ol {
+            margin-bottom: 10px;
+            width:100%;
+            button {
+              border: 1px solid #e7e7e7;
+
+            }
+          }
+        }
+      }
+    }
+
+    .jobs {
+      .row {
+        margin:0;
+        border-bottom: 1px solid #e7e7e7;
+        border-left: 1px solid #e7e7e7;
+        border-right: 1px solid #e7e7e7;
+        background: white;
+        padding: 15px;
+
+        a {
+          color: #787878;
+
+
+          .col-1 {
+            transform: translateY(0);
+
+            img {
+              width: 50px;
+              height: 50px;
+            }
+          }
+
+          .col-2 {
+            transform: translateY(0%);
+
+            span {
+              display:block;
+            }
+
+            .company {
+              font: 14px/normal 'Varela Round', sans-serif;
+              color: #919191;
+            }
+          }
+
+          .col-3 {
+            transform: translateY(70%);
+
+            img {
+              width: 20px;
+              height: 20px;
+            }
+          }
+
+          .col-4 {
+            transform: translateY(25%);
+
+            .worktime{
+              font: 700 12px/normal Montserrat, sans-serif;
+              text-transform: uppercase;
+              text-align: center;
+              color: #fff;
+              padding: 3px 10px;
+              border-radius: 4px;
+              width: 160px;
+            }
+
+            .parttime{
+              background: #f08d3c;
+            }
+
+            .fulltime{
+              background: #01be7e;
+            }
+
+            .internship {
+              background: #00aabc;
+            }
+
+            span{
+              display:block;
+            }
+          }
+        }
+
+        &:hover {
+          background: #fafafa;
+        }
+
+      }
+    }
+  }
+}
+
+@media only screen and (min-width : 480px) {
+  .jobs-container {
+
+    .jobs {
+      .row {
+        a {
+          .col-2 {
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width : 768px) {
+  .jobs-container {
+
+    .jobs {
+      .row {
+        a {
+          .col-2 {
+            transform: translateY(25%);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width : 992px) {
+
+}
+
+@media only screen and (min-width : 1200px) {
+
+}

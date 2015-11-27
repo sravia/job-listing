@@ -1,0 +1,21 @@
+{
+  "name": "joblisting",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "latest",
+    "bootstrap": "latest",
+    "jquery": "latest",
+    "angular-resource": "latest",
+    "angular-cookies": "latest",
+    "angular-sanitize": "latest",
+    "angular-route": "latest",
+    "angular-http-auth": "latest",
+    "angular-bootstrap": "latest",
+    "nya-bootstrap-select": "latest",
+    "angular-moment" : "latest",
+    "moment" : "latest",
+    "textAngular" : "latest",
+    "font-awesome": "latest",
+    "angular-file-upload": "latest"
+  }
+}

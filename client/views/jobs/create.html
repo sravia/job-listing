@@ -1,0 +1,39 @@
+<input type="file" ng-file-select="fileSelected($files)" accept="'image/*'">
+<input type="submit" ng-click="uploadFile()" >
+
+<section class="container">
+    <div class="row">
+        <div class="create-job col-xs-8">
+            <form ng-submit="create()">
+                <div class="form-group">
+                    <label class="control-label" for="profession">Profesija</label>
+                    <div class="controls">
+                        <input type="text" ng-model="profession" class="form-control" id="profession" placeholder="Profession" required="" class="form-control">
+                    </div>
+                    <label class="control-label" for="company">Uzņēmums</label>
+                    <div class="controls">
+                        <input type="text" ng-model="company" class="form-control" id="company" placeholder="Company" required="" class="form-control">
+                    </div>
+                    <label class="control-label" for="location">Atrašanās vieta</label>
+                    <div class="controls">
+                        <input type="text" ng-model="location" class="form-control" id="location" placeholder="Location" required="" class="form-control">
+                    </div>
+                    <label class="control-label" for="inputImage">Bilde</label>
+                    <label class="control-label" for="description">Apraksts</label>
+                    <div class="controls">
+                        <div text-angular id=description ng-model="description"></div>
+                    </div>
+                </div>
+                CategoryId
+                Worktime ( fulltime,parttime,internship,freelance )
+                Image
+
+                <div class="form-group">
+                    <div class="controls">
+                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
