@@ -12,9 +12,7 @@ var UserSchema = new Schema({
   },
   hashedPassword: String,
   salt: String,
-  name: String,
   admin: Boolean,
-  guest: Boolean,
   provider: String
 });
 

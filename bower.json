@@ -16,6 +16,6 @@
     "moment" : "latest",
     "textAngular" : "latest",
     "font-awesome": "latest",
-    "angular-file-upload": "latest"
+    "ng-file-upload": "latest"
   }
 }

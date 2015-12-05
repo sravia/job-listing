@@ -15,6 +15,6 @@
     "node-sass-middleware": "latest",
     "method-override": "latest",
     "cookie-parser": "latest",
-    "multer": "latest"
+    "connect-multiparty": "latest"
   }
 }

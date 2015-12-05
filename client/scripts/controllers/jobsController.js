@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('jobs')
-    .controller('JobsController', function ($scope, Jobs,Categories, $location, $routeParams, $http, WorkTimes) {
-        $scope.worktimes = WorkTimes.getWorkTimes();
+    .controller('JobsController', function ($scope, Jobs,Categories, $location, $routeParams, $http, WorkTimes, Upload,$timeout) {
         $scope.selectedProfessions = [];
         $scope.selectedWorktimes = [];
         $scope.keywords = "";
@@ -11,28 +10,9 @@ angular.module('jobs')
         $scope.itemsPerPage = 2;
         $scope.totalItems = 1;
 
-        $scope.uploadFile = function(){
-
-            $scope.fileSelected = function(files) {
-                if (files && files.length) {
-                    $scope.file = files[0];
-                }
-
-                $upload.upload({
-                    url: '/api/upload',
-                    file: $scope.file
-                })
-                    .success(function(data) {
-                        console.log(data, 'uploaded');
-                    });
-
-            };
-        };
-
         Categories.query(function(categories) {
             $scope.categories = categories;
         });
-
 
         $scope.$watch('selectedProfessions', function (val){
             $scope.getFilteredJobs();
@@ -52,17 +32,6 @@ angular.module('jobs')
 
         $scope.getWorkTime = function(_id) {
             return WorkTimes.getWorkTime(_id);
-        };
-
-        $scope.create = function() {
-            var job = new Jobs({
-                profession: this.profession
-            });
-            job.$save(function(response) {
-                $location.path("jobs/" + response._id);
-            });
-
-            this.title = "";
         };
 
         $scope.remove = function(job) {
@@ -119,7 +88,7 @@ angular.module('jobs')
                 tempWorktimes.push($scope.selectedWorktimes[i].id);
             }
             var worktimes = tempWorktimes == "" ? "null" : tempWorktimes;
-            $http.get("/api/jobs/" + start + "/"+end+"/"+keywords+"/"+location+"/"+professions+"/"+worktimes)
+            $http.get("/jobs/jobs/" + start + "/"+end+"/"+keywords+"/"+location+"/"+professions+"/"+worktimes)
                 .then(function(response) {
                     $scope.filteredJobs = response.data;
                     $scope.getFilteredJobsCount();
@@ -142,7 +111,7 @@ angular.module('jobs')
             }
             var worktimes = tempWorktimes == "" ? "null" : tempWorktimes;
 
-            $http.get("/api/jobs/count/"+keywords+"/"+location+"/"+professions+"/"+worktimes)
+            $http.get("/jobs/jobs/count/"+keywords+"/"+location+"/"+professions+"/"+worktimes)
                 .then(function(response) {
                     $scope.totalItems = response.data;
                 });

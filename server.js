@@ -11,6 +11,12 @@ var path = require('path');
 var fs = require('fs');
 var session = require('express-session');
 var sassMiddleware = require('node-sass-middleware');
+var multipart = require('connect-multiparty');
+
+server.use(multipart({
+    uploadDir: "client/images/avatars/"
+}));
+
 var modelsPath = path.join(__dirname, 'server/models');
 fs.readdirSync(modelsPath).forEach(function (file) {
     require(modelsPath + '/' + file);
@@ -34,7 +40,7 @@ server.use(session({
     saveUninitialized: true,
     cookie: {
         secure: false,
-        maxAge: 864000000
+        maxAge: 9990000000
     }
 }));
 
@@ -42,8 +48,8 @@ server.use(passport.initialize());
 server.use(passport.session());
 
 server.use('/auth', require('./server/routes/account'));
-server.use('/api', require('./server/routes/job'));
-server.use('/api', require('./server/routes/category'));
+server.use('/jobs', require('./server/routes/job'));
+server.use('/categories', require('./server/routes/category'));
 
 server.route('/*').get(function(req, res) {
     return res.sendFile(path.join(__dirname, 'client/views/index.html'));

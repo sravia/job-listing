@@ -10,7 +10,7 @@ angular.module('jobs', [
     'nya.bootstrap.select',
     'angularMoment',
     'textAngular',
-    'angularFileUpload'
+    'ngFileUpload'
 ]).config(function ($routeProvider, $locationProvider,nyaBsConfigProvider, uibPaginationConfig) {
     $routeProvider
         .when('/', {
@@ -23,7 +23,7 @@ angular.module('jobs', [
         })
         .when('/jobs/create', {
             templateUrl: 'views/jobs/create.html',
-            controller: 'JobsController'
+            controller: 'CreateJobsController'
         })
         .when('/jobs/:jobId/edit', {
             templateUrl: 'views/jobs/edit.html',

@@ -1,39 +1,58 @@
-<input type="file" ng-file-select="fileSelected($files)" accept="'image/*'">
-<input type="submit" ng-click="uploadFile()" >
-
-<section class="container">
-    <div class="row">
-        <div class="create-job col-xs-8">
-            <form ng-submit="create()">
-                <div class="form-group">
-                    <label class="control-label" for="profession">Profesija</label>
-                    <div class="controls">
-                        <input type="text" ng-model="profession" class="form-control" id="profession" placeholder="Profession" required="" class="form-control">
-                    </div>
-                    <label class="control-label" for="company">Uzņēmums</label>
-                    <div class="controls">
-                        <input type="text" ng-model="company" class="form-control" id="company" placeholder="Company" required="" class="form-control">
-                    </div>
-                    <label class="control-label" for="location">Atrašanās vieta</label>
-                    <div class="controls">
-                        <input type="text" ng-model="location" class="form-control" id="location" placeholder="Location" required="" class="form-control">
-                    </div>
+<div class="row">
+    <div class="create-job col-xs-8">
+        <form ng-submit="create()">
+            <div class="form-group">
+                <label class="control-label" for="profession">Profesija</label>
+                <div class="controls">
+                    <input type="text" ng-model="profession" class="form-control" id="profession" placeholder="Profesija" required="" class="form-control">
+                </div>
+                <label class="control-label" for="company">Uzņēmums</label>
+                <div class="controls">
+                    <input type="text" ng-model="company" class="form-control" id="company" placeholder="Uzņēmums" required="" class="form-control">
+                </div>
+                <label class="control-label" for="location">Atrašanās vieta</label>
+                <div class="controls">
+                    <input type="text" ng-model="location" class="form-control" id="location" placeholder="Atrašanās vieta" required="" class="form-control">
+                </div>
+                <label class="control-label" for="description">Apraksts</label>
+                <div class="controls">
+                    <div text-angular id=description ng-model="description"></div>
+                </div>
+                <label class="control-label" for="category">Profesijas kategorija</label>
+                <div class="controls">
+                    <select class="form-control" name="category" id="category" ng-model="category">
+                        <option ng-repeat="category in categories" value="{{category._id}}">{{category.title}}</option>
+                    </select>
+                </div>
+                <label class="control-label" for="worktime">Darba laiks</label>
+                <div class="controls">
+                    <select class="form-control" name="category" id="worktime" ng-model="worktime">
+                        <option ng-repeat="worktime in worktimes" value="{{worktime.id}}">{{worktime.title}}</option>
+                    </select>
+                </div>
+                <label class="control-label" for="expireDays">Sludinājuma derīguma termiņš</label>
+                <div class="controls">
+                    <select class="form-control" name="expireDays" id="expireDays" ng-model="expireTime">
+                        <option ng-repeat="expireDay in expireDays" value="{{expireDay.id}}">{{expireDay.title}}</option>
+                    </select>
+                </div>
+                <div class="image">
                     <label class="control-label" for="inputImage">Bilde</label>
-                    <label class="control-label" for="description">Apraksts</label>
-                    <div class="controls">
-                        <div text-angular id=description ng-model="description"></div>
-                    </div>
+                    <button type="file" id="inputImage" ngf-select="uploadFiles($file, $invalidFiles)"
+                            accept="image/*" ngf-max-size="1MB">
+                        Select File</button><img ng-src="{{imageUrl}}"/>
+                    <br>
+                    <p class="help-block"
+                       ng-show="createJobError">
+                        {{createJobError}}
+                    </p>
                 </div>
-                CategoryId
-                Worktime ( fulltime,parttime,internship,freelance )
-                Image
-
-                <div class="form-group">
-                    <div class="controls">
-                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
-</section>
+</div>

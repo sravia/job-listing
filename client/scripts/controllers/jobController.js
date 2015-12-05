@@ -6,7 +6,7 @@ angular.module('jobs')
         $scope.date = "";
 
         Jobs.get({
-            jobId: $routeParams.jobId
+                jobId: $routeParams.jobId
         }, function(job) {
             $scope.job = job;
             $scope.date = moment(new Date(job.date)).fromNow();

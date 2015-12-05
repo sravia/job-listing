@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var path = require('path');
+var fs = require('fs');
 var mongoose = require('mongoose'),
     Job = mongoose.model('Job');
 
@@ -100,6 +102,13 @@ router.route('/jobs/count/:keywords/:location/:professions/:worktime').get(funct
                 res.json(count);
             }
         });
+});
+
+router.route('/upload').post(function(req, res) {
+    var file = req.files.file;
+    res.jsonp({
+        imgName: file.name
+    });
 });
 
 module.exports = router;
