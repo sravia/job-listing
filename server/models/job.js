@@ -5,9 +5,35 @@ var mongoose = require('mongoose'),
 
 var JobSchema = new Schema({
   title: {
-    type: String,
-    index: true
-  }
+    type: String
+  },
+    categoryId: {
+        type: String
+    },
+    company: {
+        type: String
+    },
+    profession: {
+        type: String
+    },
+    worktime: {
+        type: String
+    },
+    location: {
+        type: String
+    },
+    description: {
+        type: String
+    },
+    image: {
+        type: String
+    },
+    date: {
+        type: Date
+    },
+    expireDate: {
+        type: Date
+    }
 });
 
 mongoose.model('Job', JobSchema);

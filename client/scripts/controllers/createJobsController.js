@@ -1,12 +1,15 @@
 'use strict';
 
 angular.module('jobs')
-    .controller('CreateJobsController', function ($scope,ExpireDays, Jobs,Categories, $location, $routeParams, $http, WorkTimes, Upload,$timeout) {
+    .controller('CreateJobsController', function (Auth,$scope,ExpireDays, Jobs,Categories, $location, $routeParams, $http, WorkTimes, Upload,$timeout) {
         $scope.workTimes = WorkTimes.getWorkTimes();
         $scope.expireDays = ExpireDays.getExpireDays();
+        $scope.expireDay = $scope.expireDays[0].id;
+        $scope.workTime = $scope.workTimes[0].id;
 
         Categories.query(function(categories) {
             $scope.categories = categories;
+            $scope.category = $scope.categories[0]._id;
         });
 
         $scope.uploadFiles = function(file, errFiles) {
@@ -49,9 +52,25 @@ angular.module('jobs')
             });
         };
 
+        function addDays(date, days) {
+            var result = new Date(date);
+            result.setDate(result.getDate() + days);
+            return result;
+        }
+
         $scope.create = function() {
             var job = new Jobs({
-                profession: this.profession
+                user: Auth.getUser()._id,
+                categoryId: this.category,
+                company: this.company,
+                profession: this.profession,
+                worktime: this.workTime,
+                location: this.location,
+                description: this.description,
+                image: this.imageUrl,
+                date: new Date(),
+                expireDate: addDays(new Date(),$scope.expireDays[this.expireDay].count)
+
             });
             job.$save(function(response) {
                 $location.path("jobs/" + response._id);

@@ -23,7 +23,21 @@ angular.module('jobs', [
         })
         .when('/jobs/create', {
             templateUrl: 'views/jobs/create.html',
-            controller: 'CreateJobsController'
+            controller: 'CreateJobsController',
+            resolve: {
+                hasAccess :function($location,Auth) {
+                    return Auth.hasAccess();
+                }
+            }
+        })
+        .when('/jobs/all', {
+            templateUrl: 'views/jobs/all.html',
+            controller: 'allJobsController',
+            resolve: {
+                hasAccess :function($location,Auth) {
+                    return Auth.hasAccess();
+                }
+            }
         })
         .when('/jobs/:jobId/edit', {
             templateUrl: 'views/jobs/edit.html',
@@ -40,14 +54,6 @@ angular.module('jobs', [
         .when('/signup', {
             templateUrl: 'views/signup.html',
             controller: 'SignupController'
-        })
-        .when('/admin', {
-            templateUrl: 'views/admin/jobs.html',
-            controller: 'AdminJobsController'
-        })
-        .when('/admin/categories', {
-            templateUrl: 'views/admin/categories.html',
-            controller: 'AdminCategoriesController'
         })
         .otherwise({
             redirectTo: '/'
@@ -69,13 +75,11 @@ angular.module('jobs', [
         $locationProvider.html5Mode(true);
     })
 
-  .run(function ($rootScope, $location, Auth,amMoment) {
-    amMoment.changeLocale('lv');
+    .run(function ($rootScope, $location, $cookieStore,Auth,amMoment) {
+        amMoment.changeLocale('lv');
 
-    $rootScope.$watch('currentUser', function(currentUser) {
-      if (!currentUser) {// && (['/', '/login', '/logout', '/signup'].indexOf($location.path()) == -1 )
-        Auth.currentUser();
-      }
+        $rootScope.$on('$routeChangeStart', function (next, current) {
+            console.log(Auth.getUser());
+            console.log($cookieStore.get('user'));
+        });
     });
-
-  });

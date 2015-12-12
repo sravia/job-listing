@@ -20,27 +20,21 @@
                 </div>
                 <label class="control-label" for="category">Profesijas kategorija</label>
                 <div class="controls">
-                    <select class="form-control" name="category" id="category" ng-model="category">
-                        <option ng-repeat="category in categories" value="{{category._id}}">{{category.title}}</option>
-                    </select>
+                    <select class="form-control" id="category" ng-model="category" ng-options="category._id as category.title for category in categories"></select>
                 </div>
-                <label class="control-label" for="worktime">Darba laiks</label>
+                <label class="control-label" for="workTime">Darba laiks</label>
                 <div class="controls">
-                    <select class="form-control" name="category" id="worktime" ng-model="worktime">
-                        <option ng-repeat="worktime in worktimes" value="{{worktime.id}}">{{worktime.title}}</option>
-                    </select>
+                    <select class="form-control" id="workTime" ng-model="workTime" ng-options="workTime.id as workTime.title for workTime in workTimes"></select>
                 </div>
                 <label class="control-label" for="expireDays">Sludinājuma derīguma termiņš</label>
                 <div class="controls">
-                    <select class="form-control" name="expireDays" id="expireDays" ng-model="expireTime">
-                        <option ng-repeat="expireDay in expireDays" value="{{expireDay.id}}">{{expireDay.title}}</option>
-                    </select>
+                    <select class="form-control" id="expireDays" ng-model="expireDay" ng-options="expireDay.id as expireDay.title for expireDay in expireDays"></select>
                 </div>
                 <div class="image">
                     <label class="control-label" for="inputImage">Bilde</label>
                     <button type="file" id="inputImage" ngf-select="uploadFiles($file, $invalidFiles)"
                             accept="image/*" ngf-max-size="1MB">
-                        Select File</button><img ng-src="{{imageUrl}}"/>
+                        Izvēlēties bildi</button><img ng-src="{{imageUrl}}"/>
                     <br>
                     <p class="help-block"
                        ng-show="createJobError">
@@ -50,7 +44,7 @@
             </div>
             <div class="form-group">
                 <div class="controls">
-                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                    <button type="submit" class="btn btn-primary pull-right">Pievienot</button>
                 </div>
             </div>
         </form>

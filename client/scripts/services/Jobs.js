@@ -2,7 +2,7 @@
 
 angular.module('jobs')
   .factory('Jobs', function ($resource) {
-    return $resource('jobs/jobs/:jobId', {
+    return $resource('api/jobs/:jobId', {
       jobId: '@_id'
     }, {
       update: {

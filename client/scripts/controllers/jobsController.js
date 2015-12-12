@@ -88,7 +88,7 @@ angular.module('jobs')
                 tempWorktimes.push($scope.selectedWorktimes[i].id);
             }
             var worktimes = tempWorktimes == "" ? "null" : tempWorktimes;
-            $http.get("/jobs/jobs/" + start + "/"+end+"/"+keywords+"/"+location+"/"+professions+"/"+worktimes)
+            $http.get("/api/jobs/" + start + "/"+end+"/"+keywords+"/"+location+"/"+professions+"/"+worktimes)
                 .then(function(response) {
                     $scope.filteredJobs = response.data;
                     $scope.getFilteredJobsCount();
@@ -111,7 +111,7 @@ angular.module('jobs')
             }
             var worktimes = tempWorktimes == "" ? "null" : tempWorktimes;
 
-            $http.get("/jobs/jobs/count/"+keywords+"/"+location+"/"+professions+"/"+worktimes)
+            $http.get("/api/jobs/count/"+keywords+"/"+location+"/"+professions+"/"+worktimes)
                 .then(function(response) {
                     $scope.totalItems = response.data;
                 });

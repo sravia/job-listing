@@ -5,7 +5,7 @@
                 <li ng-repeat="item in menu"  class="{{item.link == currentUrl ? 'active':''}}">
                     <a href="{{item.link}}">{{item.title}}</a>
                 </li>
-                <li ng-repeat="item in adminMenu" ng-show="currentUser">
+                <li ng-repeat="item in userMenu" ng-show="currentUser">
                     <a href="{{item.link}}">{{item.title}}</a>
                 </li>
             </ul>

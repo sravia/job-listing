@@ -48,7 +48,7 @@ server.use(passport.initialize());
 server.use(passport.session());
 
 server.use('/auth', require('./server/routes/account'));
-server.use('/jobs', require('./server/routes/job'));
+server.use('/api', require('./server/routes/job'));
 server.use('/categories', require('./server/routes/category'));
 
 server.route('/*').get(function(req, res) {

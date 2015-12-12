@@ -15,19 +15,18 @@ router.param('jobId', function(req, res, next, id) {
 });
 
 router.route('/jobs').post(function(req, res) {
-    var job = new Job(req.body);
-    job.save(function(err) {
+    var newJob = new Job(req.body);
+    newJob.save(function(err) {
         if (err) {
             res.json(500, err);
         } else {
-            res.json(job);
+            res.json(newJob);
         }
     });
 });
 
 router.route('/jobs/:jobId').put(function(req, res) {
     var job = req.job;
-    job.profession = req.body.profession;
     job.save(function(err) {
         if (err) {
             res.json(500, err);
@@ -103,6 +102,37 @@ router.route('/jobs/count/:keywords/:location/:professions/:worktime').get(funct
             }
         });
 });
+
+router.route('/jobs/count/:creator').get(function(req, res) {
+    Job.find({ 'user': req.params.creator })
+        .count(function(err, count) {
+            if (err) {
+                res.json(500, err);
+            } else {
+                res.json(count);
+            }
+        });
+});
+
+router.route('/jobs/:start/:end/:creator').get(function(req, res) {
+    console.log(req.params.creator);
+
+    console.log(req.params.start);
+    console.log(req.params.end);
+
+    Job.find({ 'user': req.params.creator})
+        .sort('-created')
+        .skip(req.params.start)
+        .limit(req.params.end)
+        .exec(function(err, jobs) {
+            if (err) {
+                res.json(500, err);
+            } else {
+                res.json(jobs);
+            }
+        });
+});
+
 
 router.route('/upload').post(function(req, res) {
     var file = req.files.file;
