@@ -3,7 +3,6 @@
 angular.module('jobs')
     .factory('Auth', function Auth($location, $rootScope, Session, User, $cookieStore) {
         $rootScope.currentUser = $cookieStore.get('user') || null;
-        $cookieStore.remove('user');
 
     return {
 

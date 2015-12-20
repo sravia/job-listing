@@ -115,11 +115,6 @@ router.route('/jobs/count/:creator').get(function(req, res) {
 });
 
 router.route('/jobs/:start/:end/:creator').get(function(req, res) {
-    console.log(req.params.creator);
-
-    console.log(req.params.start);
-    console.log(req.params.end);
-
     Job.find({ 'user': req.params.creator})
         .sort('-created')
         .skip(req.params.start)

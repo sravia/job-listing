@@ -1,32 +1,35 @@
 <div class="container">
     <div class="jobs-container edit-page" ng-init="loadJobs()">
         <div class="jobs" ng-init="getFilteredJobs()">
-            <div class="row" ng-repeat="job in filteredJobs">
-                <a ng-href="jobs/{{job._id}}">
-                    <div class="col-0 col-1 col-sm-1 col-md-1 col-lg-1">
-                        D
-                    </div>
-                    <div class="col-0 col-1 col-sm-1 col-md-1 col-lg-1">
-                        R
-                    </div>
-                    <div class="col-2 col-xs-10 col-sm-10 col-md-6 col-lg-5">
-                        <span class="profession">{{job.profession}}</span>
-                        <span class="company">{{job.company}}</span>
-                    </div>
-                    <div class="col-3 col-md-5 col-lg-3 visible-md visible-lg">
-                        <img ng-src="images/location.png" />
-                        <span>{{job.location}}</span>
-                    </div>
-                    <div class="col-4 col-lg-3 visible-lg">
-                        <span class="worktime {{getWorkTime(job.worktime).css}}">{{getWorkTime(job.worktime).title}}</span>
-                        <span>Pievienots <time am-time-ago="{{formatDate(job.date)}}"></time></span>
-                    </div>
-                </a>
-            </div>
+            <table class = "table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Profesija</th>
+                        <th>Atrašanās vieta</th>
+                        <th>Slodze</th>
+                        <th>Vadība</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="job in filteredJobs">
+                        <td>{{job.profession}}</td>
+                        <td>{{job.location}}</td>
+                        <td>{{getWorkTime(job.worktime).title}}</td>
+                        <td>
+                            <div>
+                                <a class="btn btn-default actionButton"><span class="glyphicon glyphicon-list-alt"></span></a>
+                                <a class="btn btn-default actionButton"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a class="btn btn-default actionButton" ng-click="delete(job)"><span class="glyphicon glyphicon-trash"></span></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
             <div class="text-center">
                 <uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="getFilteredJobs()" items-per-page="itemsPerPage"></uib-pagination>
             </div>
         </div>
     </div>
-
 </div>

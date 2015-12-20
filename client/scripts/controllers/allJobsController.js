@@ -10,6 +10,12 @@ angular.module('jobs')
             return WorkTimes.getWorkTime(_id);
         };
 
+        $scope.delete = function(job) {
+            job.delete(function() {
+                $location.path('jobs/all');
+            });
+        };
+
         $scope.formatDate = function(date) {
             if(date != null){
                 return new Date(date);

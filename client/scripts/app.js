@@ -59,17 +59,16 @@ angular.module('jobs', [
             redirectTo: '/'
         });
 
-        nyaBsConfigProvider.setLocalizedText('lv', {
-            defaultNoneSelection: 'Profesija...',
-            noSearchResult: 'Nekas netika atrasts',
-            numberItemSelected: ''
-        });
-
         uibPaginationConfig.previousText="‹";
         uibPaginationConfig.nextText="›";
         uibPaginationConfig.firstText="«";
         uibPaginationConfig.lastText="»";
 
+        nyaBsConfigProvider.setLocalizedText('lv', {
+            defaultNoneSelection: 'Profesija...',
+            noSearchResult: 'Nekas netika atrasts',
+            numberItemSelected: ''
+        });
         nyaBsConfigProvider.useLocale('lv');
 
         $locationProvider.html5Mode(true);
