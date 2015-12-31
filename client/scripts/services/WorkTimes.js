@@ -3,9 +3,9 @@
 angular.module('jobs')
     .factory('WorkTimes', function WorkTimes($rootScope) {
         $rootScope.worktimes = [
-            {id: 1, css:'fulltime', title: 'Pilna slodze'},
-            {id: 2, css:'parttime', title: 'Pusslodze'},
-            {id: 3, css:'internship', title: 'Prakse'}
+            {id: 0, css:'fulltime', title: 'Pilna slodze'},
+            {id: 1, css:'parttime', title: 'Pusslodze'},
+            {id: 2, css:'internship', title: 'Prakse'}
         ];
 
         return {

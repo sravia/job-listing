@@ -12,9 +12,9 @@ angular.module('jobs')
             getExpireDays: function() {
                 return $rootScope.expireDays;
             },
-            getExpireDay: function(_id) {
+            getExpireDay: function(count) {
                 return $.grep($rootScope.expireDays, function(item){
-                    return item.id == _id
+                    return item.count == count
                 })[0];
             }
         };

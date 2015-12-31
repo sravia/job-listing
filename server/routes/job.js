@@ -15,6 +15,7 @@ router.param('jobId', function(req, res, next, id) {
 });
 
 router.route('/jobs').post(function(req, res) {
+    console.log("post");
     var newJob = new Job(req.body);
     newJob.save(function(err) {
         if (err) {
@@ -26,6 +27,8 @@ router.route('/jobs').post(function(req, res) {
 });
 
 router.route('/jobs/:jobId').put(function(req, res) {
+    console.log("put");
+    console.log(req.job);
     var job = req.job;
     job.save(function(err) {
         if (err) {
@@ -38,7 +41,6 @@ router.route('/jobs/:jobId').put(function(req, res) {
 
 router.route('/jobs/:jobId').delete(function(req, res) {
     var job = req.job;
-
     job.remove(function(err) {
         if (err) {
             res.json(500, err);
@@ -104,6 +106,7 @@ router.route('/jobs/count/:keywords/:location/:professions/:worktime').get(funct
 });
 
 router.route('/jobs/count/:creator').get(function(req, res) {
+    console.log(req.params.creator);
     Job.find({ 'user': req.params.creator })
         .count(function(err, count) {
             if (err) {

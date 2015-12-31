@@ -1,15 +1,52 @@
-<section ng-init="findOne()">
-    <form class="form-horizontal" ng-submit="update()">
-        <div class="form-group">
-            <label class="control-label" for="title">Title</label>
-            <div class="controls">
-                <input type="text" ng-model="job.title" class="form-control" id="title" placeholder="Title" required="" class="form-control">
+<div class="row">
+    <div class="create-job col-xs-8">
+        <form ng-submit="update()">
+            <div class="form-group">
+                <label class="control-label" for="profession">Profesija</label>
+                <div class="controls">
+                    <input type="text" ng-model="job.profession" class="form-control" id="profession" required="" class="form-control">
+                </div>
+                <label class="control-label" for="company">Uzņēmums</label>
+                <div class="controls">
+                    <input type="text" ng-model="job.company" class="form-control" id="company" placeholder="Uzņēmums" required="" class="form-control">
+                </div>
+                <label class="control-label" for="location">Atrašanās vieta</label>
+                <div class="controls">
+                    <input type="text" ng-model="job.location" class="form-control" id="location" placeholder="Atrašanās vieta" required="" class="form-control">
+                </div>
+                <label class="control-label" for="description">Apraksts</label>
+                <div class="controls">
+                    <div text-angular id=description ng-model="job.description"></div>
+                </div>
+                <label class="control-label" for="category">Profesijas kategorija</label>
+                <div class="controls">
+                    <select class="form-control" id="category" ng-model="job.categoryId" ng-options="category._id as category.title for category in categories"></select>
+                </div>
+                <label class="control-label" for="workTime">Darba laiks</label>
+                <div class="controls">
+                    <select class="form-control" id="worktime" ng-model="job.workTimeId" ng-options="worktime.id as worktime.title for worktime in _workTimes"></select>
+                </div>
+                <label class="control-label" for="expireDays">Sludinājuma derīguma termiņš</label>
+                <div class="controls">
+                    <select class="form-control" id="expireDays" ng-model="job.expireDaysId" ng-options="expireDays.id as expireDays.title for expireDays in _expireDays"></select>
+                </div>
+                <div class="image">
+                    <label class="control-label" for="inputImage">Bilde</label>
+                    <button type="file" id="inputImage" ngf-select="uploadFiles($file, $invalidFiles)"
+                            accept="image/*" ngf-max-size="1MB">
+                        Izvēlēties bildi</button><img ng-src="{{job.image}}"/>
+                    <br>
+                    <p class="help-block"
+                       ng-show="errorMessage">
+                        {{errorMessage}}
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="controls">
-                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+            <div class="form-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-primary pull-right">Veikt izmaiņas</button>
+                </div>
             </div>
-        </div>
-    </form>
-</section>
+        </form>
+    </div>
+</div>

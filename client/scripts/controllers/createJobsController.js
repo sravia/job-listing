@@ -52,12 +52,6 @@ angular.module('jobs')
             });
         };
 
-        function addDays(date, days) {
-            var result = new Date(date);
-            result.setDate(result.getDate() + days);
-            return result;
-        }
-
         $scope.create = function() {
             var job = new Jobs({
                 user: Auth.getUser()._id,
@@ -69,8 +63,7 @@ angular.module('jobs')
                 description: this.description,
                 image: this.imageUrl,
                 date: new Date(),
-                expireDate: addDays(new Date(),$scope.expireDays[this.expireDay].count)
-
+                expireDays: $scope.expireDays[this.expireDay].id
             });
             job.$save(function(response) {
                 $location.path("jobs/" + response._id);

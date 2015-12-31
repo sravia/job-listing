@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobs')
-    .controller('allJobsController', function ($scope, Auth,$http,$routeParams, WorkTimes,$rootScope) {
+    .controller('allJobsController', function ($scope,Jobs,$location, Auth,$http,$routeParams, WorkTimes,$rootScope) {
         $scope.currentPage = 1;
         $scope.itemsPerPage = 2;
         $scope.totalItems = 1;
@@ -10,9 +10,10 @@ angular.module('jobs')
             return WorkTimes.getWorkTime(_id);
         };
 
-        $scope.delete = function(job) {
-            job.delete(function() {
-                $location.path('jobs/all');
+        $scope.delete = function(j) {
+            var job = new Jobs(j);
+            job.$remove(function() {
+                $scope.getFilteredJobs();
             });
         };
 

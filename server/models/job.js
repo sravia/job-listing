@@ -4,9 +4,9 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var JobSchema = new Schema({
-  title: {
-    type: String
-  },
+    user: {
+        type: String
+    },
     categoryId: {
         type: String
     },
@@ -16,8 +16,8 @@ var JobSchema = new Schema({
     profession: {
         type: String
     },
-    worktime: {
-        type: String
+    workTimeId: {
+        type: Number
     },
     location: {
         type: String
@@ -31,8 +31,8 @@ var JobSchema = new Schema({
     date: {
         type: Date
     },
-    expireDate: {
-        type: Date
+    expireDaysId: {
+        type: Number
     }
 });
 

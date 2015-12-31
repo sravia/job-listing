@@ -15,11 +15,11 @@
                     <tr ng-repeat="job in filteredJobs">
                         <td>{{job.profession}}</td>
                         <td>{{job.location}}</td>
-                        <td>{{getWorkTime(job.worktime).title}}</td>
+                        <td>{{getWorkTime(job.workTimeId).title}}</td>
                         <td>
                             <div>
                                 <a class="btn btn-default actionButton"><span class="glyphicon glyphicon-list-alt"></span></a>
-                                <a class="btn btn-default actionButton"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a ng-href="/jobs/edit/{{job._id}}" class="btn btn-default actionButton"><span class="glyphicon glyphicon-pencil"></span></a>
                                 <a class="btn btn-default actionButton" ng-click="delete(job)"><span class="glyphicon glyphicon-trash"></span></a>
                             </div>
                         </td>

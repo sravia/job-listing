@@ -10,6 +10,13 @@ angular.module('jobs')
         $scope.itemsPerPage = 2;
         $scope.totalItems = 1;
 
+        //addDays(new Date(),
+        function addDays(date, days) {
+            var result = new Date(date);
+            result.setDate(result.getDate() + days);
+            return result;
+        }
+
         Categories.query(function(categories) {
             $scope.categories = categories;
         });
@@ -42,13 +49,6 @@ angular.module('jobs')
                     $scope.jobs.splice(i, 1);
                 }
             }
-        };
-
-        $scope.update = function() {
-            var job = $scope.job;
-            job.$update(function() {
-                $location.path('jobs/' + job._id);
-            });
         };
 
         $scope.formatDate = function(date) {

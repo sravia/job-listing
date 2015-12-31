@@ -39,9 +39,14 @@ angular.module('jobs', [
                 }
             }
         })
-        .when('/jobs/:jobId/edit', {
+        .when('/jobs/edit/:jobId', {
             templateUrl: 'views/jobs/edit.html',
-            controller: 'JobsController'
+            controller: 'editJobsController',
+            resolve: {
+                hasAccess :function($location,Auth) {
+                    return Auth.hasAccess();
+                }
+            }
         })
         .when('/jobs/:jobId', {
             templateUrl: 'views/jobs/job.html',
@@ -78,7 +83,6 @@ angular.module('jobs', [
         amMoment.changeLocale('lv');
 
         $rootScope.$on('$routeChangeStart', function (next, current) {
-            console.log(Auth.getUser());
-            console.log($cookieStore.get('user'));
+
         });
     });

@@ -5,8 +5,8 @@ angular.module('jobs')
     return $resource('api/jobs/:jobId', {
       jobId: '@_id'
     }, {
-      update: {
-        method: 'PUT'
-      }
+        update: {
+            method: 'PUT'
+        }
     });
-  });
+});
