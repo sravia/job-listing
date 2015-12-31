@@ -5,33 +5,23 @@ angular.module('jobs')
         $scope.errorMessage = "";
         $scope._workTimes = WorkTimes.getWorkTimes();
         $scope._expireDays = ExpireDays.getExpireDays();
-        $scope.job = [];
+        $scope.job = {};
 
         Jobs.get({
             jobId: $routeParams.jobId
         }, function(job) {
-            console.log(job);
-            $scope.job._id = job._id;
-            $scope.job.categoryId = job.categoryId;
-            $scope.job.company = job.company;
-            $scope.job.date = job.date;
-            $scope.job.description = job.description;
-            $scope.job.expireDaysId = job.expireDaysId;
-            $scope.job.image = job.image;
-            $scope.job.location = job.location;
-            $scope.job.profession = job.profession;
-            $scope.job.user = job.user;
-            $scope.job.workTimeId = job.workTimeId;
+            $scope.job = job;
         });
+
+        $scope.updateJob = function(){
+            $scope.job.$update(function(response) {
+                $location.path("jobs/" + response._id);
+            });
+        };
 
         Categories.query(function(categories) {
             $scope.categories = categories;
         });
-
-        $scope.$watchCollection('job', function (newVal, oldVal) {
-           // console.log($scope.job);
-        });
-
 
         $scope.getWorkTime = function(_id) {
             return WorkTimes.getWorkTime(_id);
@@ -39,15 +29,6 @@ angular.module('jobs')
 
         $scope.getExpireDay = function(count) {
             return ExpireDays.getExpireDay(count);
-        };
-
-        $scope.update = function(){
-            var job = new Jobs($scope.job);
-            console.log(job);
-
-            job.$update(function(response) {
-               // $location.path("jobs/" + response._id);
-            });
         };
 
         $scope.uploadFiles = function(file, errFiles) {

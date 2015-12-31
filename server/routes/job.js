@@ -27,15 +27,36 @@ router.route('/jobs').post(function(req, res) {
 });
 
 router.route('/jobs/:jobId').put(function(req, res) {
-    console.log("put");
-    console.log(req.job);
-    var job = req.job;
-    job.save(function(err) {
-        if (err) {
-            res.json(500, err);
-        } else {
-            res.json(job);
-        }
+    var categoryId = req.body.categoryId;
+    var company = req.body.company;
+    var date = req.body.date;
+    var description = req.body.description;
+    var expireDaysId = req.body.expireDaysId;
+    var image = req.body.image;
+    var location = req.body.location;
+    var profession = req.body.profession;
+    var user = req.body.user;
+    var workTimeId = req.body.workTimeId;
+
+    Job.findById(req.params.jobId, function (err, job) {
+        job.update({
+            categoryId : categoryId,
+            company : company,
+            date : date,
+            description : description,
+            expireDaysId : expireDaysId,
+            image : image,
+            location : location,
+            profession : profession,
+            user : user,
+            workTimeId : workTimeId
+        }, function (err) {
+            if (err) {
+                res.json(500, err);
+            } else {
+                res.json(job);
+            }
+        })
     });
 });
 
