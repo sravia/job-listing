@@ -107,7 +107,6 @@ angular.module('jobs', [
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             var requireLogin = toState.data.authorization;
-            console.log($rootScope.currentUser);
 
             if (requireLogin && $rootScope.currentUser == null) {
                 event.preventDefault();
@@ -119,7 +118,6 @@ angular.module('jobs', [
                 $cookieStore.put('user',user);
             },
             function(status) {
-                console.log("redirect");
                 $rootScope.currentUser = null;
                 $cookieStore.remove('user');
             });

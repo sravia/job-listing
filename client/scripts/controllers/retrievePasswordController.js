@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobs')
-    .controller('RetrievePasswordController', function ($scope, Auth, $location) {
+    .controller('RetrievePasswordController', function ($scope,User, Auth, $location) {
         $scope.errorMessage = "";
         $scope.passwords = {
             password : "",
@@ -18,7 +18,13 @@ angular.module('jobs')
 
         $scope.retrievepassword = function(){
             if($scope.errorMessage == "" && $scope.passwords.secondPassword != ""){
-                console.log("get pw");
+                User.update({
+                    password: $scope.passwords.password
+                }, function(user) {
+                    $scope.errorMessage = "Parole veiksmīgi nomainīta!";
+                }, function(err) {
+                    $scope.errorMessage = "Neizdevās nomainīt paroli!";
+                });
             }
         }
     });

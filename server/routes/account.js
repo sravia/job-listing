@@ -44,6 +44,20 @@ passport.use(new LocalStrategy({
     }
 ));
 
+router.route('/users').put(function(req, res) {
+    var password = req.body.password;
+    var user = req.user;
+    user.password = password;
+
+    user.save(function(err){
+        if(err){
+            console.log(err);
+        }else {
+            return res.json(user);
+        }
+    })
+});
+
 router.route('/users').post(function(req, res) {
     var newUser = new User(req.body);
     newUser.provider = 'local';
@@ -109,13 +123,10 @@ router.route('/session').get(function(req, res) {
 });
 
 router.route('/session').delete(function(req, res) {
-    console.log(1);
     if(req.user) {
-        console.log(2);
         req.logout();
         res.sendStatus(200);
     } else {
-        console.log(3);
         res.sendStatus(400, "Neesat ielogojies");
     }
 });

@@ -46,19 +46,6 @@ angular.module('jobs')
             function(err) {
                 return cb(err.data);
             });
-        },
-
-        changePassword: function(email, oldPassword, newPassword, callback) {
-        var cb = callback || angular.noop;
-            User.update({
-                email: email,
-                oldPassword: oldPassword,
-                newPassword: newPassword
-            }, function(user) {
-                return cb();
-            }, function(err) {
-                return cb(err.data);
-            });
         }
     };
   });
