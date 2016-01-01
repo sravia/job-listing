@@ -3,6 +3,13 @@
     border-radius:0;
     margin:0;
 
+    .dropdown-menu {
+      width:100%;
+      li {
+        cursor: pointer;
+      }
+    }
+
     .navbar-nav{
       margin:0;
     }

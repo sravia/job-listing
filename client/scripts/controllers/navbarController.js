@@ -5,23 +5,23 @@ angular.module('jobs')
         $scope.currentUrl = $location.path();
     $scope.menu = [{
       "title": "Sludinājumi",
-      "link": "/jobs"
+      "link": "jobs"
     }];
 
     $scope.userMenu = [
         {
         "title": "Pievienot sludinājumu",
-        "link": "/jobs/create"
+        "link": "jobs.create"
         },
         {
         "title": "Mani sludinājumi",
-        "link": "/jobs/all"
+        "link": "jobs.all"
         }];
 
     $scope.logout = function() {
       Auth.logout(function(err) {
         if(!err) {
-          $location.path('/login');
+            $state.go("login");
         }
       });
     };

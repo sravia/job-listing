@@ -5,12 +5,8 @@ angular.module('jobs')
         $rootScope.currentUser = $cookieStore.get('user') || null;
 
     return {
-
-        hasAccess : function(){
-            if($rootScope.currentUser == null) {
-                $location.path('/login');
-            }
-            return true;
+        getUser: function() {
+            return $rootScope.currentUser;
         },
 
         login: function(provider, user, callback) {
@@ -43,18 +39,13 @@ angular.module('jobs')
 
         createUser: function(userinfo, callback) {
             var cb = callback || angular.noop;
-                User.save(userinfo,
-            function(user) {
+            User.save(userinfo, function(user) {
                 $rootScope.currentUser = user;
                 return cb();
             },
             function(err) {
                 return cb(err.data);
             });
-        },
-
-        getUser: function() {
-            return $rootScope.currentUser;
         },
 
         changePassword: function(email, oldPassword, newPassword, callback) {

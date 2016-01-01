@@ -90,11 +90,11 @@ router.route('/jobs/:start/:end/:keywords/:location/:professions/:worktime').get
     var keywords = req.params.keywords == "null" ? "" : req.params.keywords;
     var location = req.params.location == "null" ? "" : req.params.location;
     var professions = req.params.professions == "null" ? { $ne: "null"} : { $in : req.params.professions.split(',')  };
-    var worktime = req.params.worktime == "null" ? { $ne: "null"} : { $in : req.params.worktime.split(',')  };
+    var worktime = req.params.worktime == "null" ? { $ne: "-1"} : { $in : req.params.worktime.split(',')  };
     Job.find({ 'profession': new RegExp(keywords, 'i'),
         'location' : new RegExp(location, 'i'),
         'categoryId' : professions,
-        'worktime' : worktime  })
+        'workTimeId' : worktime  })
         .sort('-created')
         .skip(req.params.start)
         .limit(req.params.end)
@@ -112,11 +112,11 @@ router.route('/jobs/count/:keywords/:location/:professions/:worktime').get(funct
     var keywords = req.params.keywords == "null" ? "" : req.params.keywords;
     var location = req.params.location == "null" ? "" : req.params.location;
     var professions = req.params.professions == "null" ? { $ne: "null"} : { $in : req.params.professions.split(',')  };
-    var worktime = req.params.worktime == "null" ? { $ne: "null"} : { $in : req.params.worktime.split(',')  };
+    var worktime = req.params.worktime == "null" ? { $ne: "-1"} : { $in : req.params.worktime.split(',')  };
     Job.find({ 'profession': new RegExp(keywords, 'i'),
         'location' : new RegExp(location, 'i'),
         'categoryId' : professions,
-        'worktime' : worktime  })
+        'workTimeId' : worktime  })
         .count(function(err, count) {
             if (err) {
                 res.json(500, err);

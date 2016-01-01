@@ -109,10 +109,13 @@ router.route('/session').get(function(req, res) {
 });
 
 router.route('/session').delete(function(req, res) {
+    console.log(1);
     if(req.user) {
+        console.log(2);
         req.logout();
         res.sendStatus(200);
     } else {
+        console.log(3);
         res.sendStatus(400, "Neesat ielogojies");
     }
 });

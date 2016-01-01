@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobs')
-    .controller('CreateJobsController', function (Auth,$scope,ExpireDays, Jobs,Categories, $location, $routeParams, $http, WorkTimes, Upload,$timeout) {
+    .controller('CreateJobsController', function (Auth,$scope,ExpireDays, Jobs,Categories, $location, $http, WorkTimes, Upload,$timeout) {
         $scope.workTimes = WorkTimes.getWorkTimes();
         $scope.expireDays = ExpireDays.getExpireDays();
         $scope.expireDay = $scope.expireDays[0].id;
@@ -42,14 +42,6 @@ angular.module('jobs')
             if(date != null){
                 return new Date(date);
             }
-        };
-
-        $scope.findOne = function() {
-            Jobs.get({
-                jobId: $routeParams.jobId
-            }, function(job) {
-                $scope.job = job;
-            });
         };
 
         $scope.create = function() {

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobs')
-    .controller('allJobsController', function ($scope,Jobs,$location, Auth,$http,$routeParams, WorkTimes,$rootScope) {
+    .controller('allJobsController', function ($scope,Jobs,$location, Auth,$http,$stateParams, WorkTimes,$rootScope) {
         $scope.currentPage = 1;
         $scope.itemsPerPage = 2;
         $scope.totalItems = 1;

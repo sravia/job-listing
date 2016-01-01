@@ -19,14 +19,14 @@
 
   <div ng-include="" src="'/views/navbar.html'"></div>
 
-        <div ng-view=""></div>
+        <div ui-view></div>
 
 
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-resource/angular-resource.js"></script>
     <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="../bower_components/angular-http-auth/src/http-auth-interceptor.js"></script>
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -51,6 +51,7 @@
     <script src="../scripts/controllers/adminController.js"></script>
     <script src="../scripts/controllers/userJobsController.js"></script>
     <script src="../scripts/controllers/editJobsController.js"></script>
+    <script src="../scripts/controllers/retrievePasswordController.js"></script>
 
     <script src="../scripts/services/Auth.js"></script>
     <script src="../scripts/services/User.js"></script>

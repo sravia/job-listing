@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobs')
-    .controller('JobsController', function ($scope, Jobs,Categories, $location, $routeParams, $http, WorkTimes, Upload,$timeout) {
+    .controller('JobsController', function ($scope, Jobs,Categories, $location, $http, WorkTimes, Upload,$timeout) {
         $scope.selectedProfessions = [];
         $scope.selectedWorktimes = [];
         $scope.keywords = "";
@@ -61,14 +61,6 @@ angular.module('jobs')
             Jobs.query(function(jobs) {
                 $scope.jobs = jobs;
                 $scope.totalItems = jobs.length;
-            });
-        };
-
-        $scope.findOne = function() {
-            Jobs.get({
-                jobId: $routeParams.jobId
-            }, function(job) {
-                $scope.job = job;
             });
         };
 

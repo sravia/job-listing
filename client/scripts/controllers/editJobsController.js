@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('jobs')
-    .controller('editJobsController', function ($scope,Jobs,ExpireDays, $location,Categories, Auth,$http,$routeParams, WorkTimes,$rootScope) {
+    .controller('editJobsController', function ($scope,Jobs,ExpireDays, $location,Categories, Auth,$http,$stateParams, WorkTimes,$rootScope) {
         $scope.errorMessage = "";
         $scope._workTimes = WorkTimes.getWorkTimes();
         $scope._expireDays = ExpireDays.getExpireDays();
         $scope.job = {};
 
         Jobs.get({
-            jobId: $routeParams.jobId
+            jobId: $stateParams.jobId
         }, function(job) {
             $scope.job = job;
         });

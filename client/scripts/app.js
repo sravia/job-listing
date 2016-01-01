@@ -4,64 +4,87 @@ angular.module('jobs', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngRoute',
+    'ui.router',
     'http-auth-interceptor',
     'ui.bootstrap',
     'nya.bootstrap.select',
     'angularMoment',
     'textAngular',
     'ngFileUpload'
-]).config(function ($routeProvider, $locationProvider,nyaBsConfigProvider, uibPaginationConfig) {
-    $routeProvider
-        .when('/', {
+]).config(function ($stateProvider, $urlRouterProvider, $locationProvider,nyaBsConfigProvider, uibPaginationConfig) {
+    $urlRouterProvider.when("/jobs", "/jobs/list");
+    $urlRouterProvider.otherwise('/jobs/list');
+    $stateProvider
+        .state('jobs', {
+            url: '/jobs',
             templateUrl: 'views/jobs/jobs.html',
-            controller: 'JobsController'
+            data: {
+                authorization: false
+            }
         })
-        .when('/jobs', {
-            templateUrl: 'views/jobs/jobs.html',
-            controller: 'JobsController'
+        .state('jobs.list', {
+            url: '/list',
+            templateUrl: 'views/jobs/list.html',
+            controller: 'JobsController',
+            data: {
+                authorization: false
+            }
         })
-        .when('/jobs/create', {
+        .state('jobs.create', {
+            url: '/create',
             templateUrl: 'views/jobs/create.html',
             controller: 'CreateJobsController',
-            resolve: {
-                hasAccess :function($location,Auth) {
-                    return Auth.hasAccess();
-                }
+            data: {
+                authorization: true
             }
         })
-        .when('/jobs/all', {
+        .state('jobs.all', {
+            url: '/all',
             templateUrl: 'views/jobs/all.html',
             controller: 'allJobsController',
-            resolve: {
-                hasAccess :function($location,Auth) {
-                    return Auth.hasAccess();
-                }
+            data: {
+                authorization: true
             }
         })
-        .when('/jobs/edit/:jobId', {
+        .state('jobs.edit', {
+            url: '/edit/:jobId',
             templateUrl: 'views/jobs/edit.html',
             controller: 'editJobsController',
-            resolve: {
-                hasAccess :function($location,Auth) {
-                    return Auth.hasAccess();
-                }
+            data: {
+                authorization: true
             }
         })
-        .when('/jobs/:jobId', {
+        .state('jobs.job', {
+            url: '/job/:jobId',
             templateUrl: 'views/jobs/job.html',
-            controller: 'JobController'
+            controller: 'JobController',
+            data: {
+                authorization: false
+            }
         })
-        .when('/login', {
+        .state('login', {
+            url: '/login',
             templateUrl: 'views/login.html',
-            controller: 'LoginController'
+            controller: 'LoginController',
+            data: {
+                authorization: false
+            }
         })
-        .when('/signup', {
+        .state('signup', {
+            url: '/signup',
             templateUrl: 'views/signup.html',
-            controller: 'SignupController'
+            controller: 'SignupController',
+            data: {
+                authorization: false
+            }
         })
-        .otherwise({
-            redirectTo: '/'
+        .state('retrievepassword', {
+            url: '/retrievepassword',
+            templateUrl: 'views/retrievepassword.html',
+            controller: 'RetrievePasswordController',
+            data: {
+                authorization: true
+            }
         });
 
         uibPaginationConfig.previousText="‹";
@@ -79,10 +102,26 @@ angular.module('jobs', [
         $locationProvider.html5Mode(true);
     })
 
-    .run(function ($rootScope, $location, $cookieStore,Auth,amMoment) {
+    .run(function ($rootScope, $location, $cookieStore,$state,Session,Auth,amMoment) {
         amMoment.changeLocale('lv');
 
-        $rootScope.$on('$routeChangeStart', function (next, current) {
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+            var requireLogin = toState.data.authorization;
+            console.log($rootScope.currentUser);
 
+            if (requireLogin && $rootScope.currentUser == null) {
+                event.preventDefault();
+                $state.go("jobs.list");
+            }
+
+            Session.get(function(user) {
+                $rootScope.currentUser = user;
+                $cookieStore.put('user',user);
+            },
+            function(status) {
+                console.log("redirect");
+                $rootScope.currentUser = null;
+                $cookieStore.remove('user');
+            });
         });
     });
