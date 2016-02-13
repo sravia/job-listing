@@ -14,7 +14,7 @@ var sassMiddleware = require('node-sass-middleware');
 var multipart = require('connect-multiparty');
 
 server.use(multipart({
-    uploadDir: "client/images/avatars/"
+    uploadDir: "client/uploads/"
 }));
 
 var modelsPath = path.join(__dirname, 'server/models');
@@ -47,9 +47,11 @@ server.use(session({
 server.use(passport.initialize());
 server.use(passport.session());
 
+server.use('/api/global', require('./server/routes/global'));
 server.use('/auth', require('./server/routes/account'));
 server.use('/api', require('./server/routes/job'));
 server.use('/categories', require('./server/routes/category'));
+server.use('/api/application', require('./server/routes/application'));
 
 server.route('/*').get(function(req, res) {
     return res.sendFile(path.join(__dirname, 'client/views/index.html'));

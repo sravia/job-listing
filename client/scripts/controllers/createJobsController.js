@@ -18,14 +18,14 @@ angular.module('jobs')
                 $scope.createJobError = ($scope.errFile.$error === "maxSize" ? "Bilde pārāk liela!": "Bilde netika augšupielādēta!");
             }else if (file){
                 file.upload = Upload.upload({
-                    url: '/jobs/upload',
+                    url: '/api/global/upload',
                     data: {file: file}
                 });
                 file.upload.then(function (response) {
                     $timeout(function () {
                         file.result = response.data;
                         console.log(response.data);
-                        $scope.imageUrl = "/images/avatars/"+response.data.imgName;
+                        $scope.imageUrl = "/uploads/"+response.data.name;
                     });
                 }, function (response) {
                     if (response.status > 0)
@@ -50,12 +50,12 @@ angular.module('jobs')
                 categoryId: this.category,
                 company: this.company,
                 profession: this.profession,
-                worktime: this.workTime,
+                workTimeId: this.workTime,
                 location: this.location,
                 description: this.description,
                 image: this.imageUrl,
-                date: new Date(),
-                expireDays: $scope.expireDays[this.expireDay].id
+                expireDays: $scope.expireDays[this.expireDay].id,
+                date: new Date()
             });
             job.$save(function(response) {
                 $location.path("jobs/" + response._id);

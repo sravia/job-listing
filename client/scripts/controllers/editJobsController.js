@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobs')
-    .controller('editJobsController', function ($scope,Jobs,ExpireDays, $location,Categories, Auth,$http,$stateParams, WorkTimes,$rootScope) {
+    .controller('editJobsController', function ($scope,Jobs,ExpireDays, $location,Categories, Auth,$http,$stateParams, $timeout, WorkTimes,Upload) {
         $scope.errorMessage = "";
         $scope._workTimes = WorkTimes.getWorkTimes();
         $scope._expireDays = ExpireDays.getExpireDays();
@@ -37,14 +37,14 @@ angular.module('jobs')
                 $scope.errorMessage = ($scope.errFile.$error === "maxSize" ? "Bilde pārāk liela!": "Bilde netika augšupielādēta!");
             }else if (file){
                 file.upload = Upload.upload({
-                    url: '/jobs/upload',
+                    url: '/api/global/upload',
                     data: {file: file}
                 });
                 file.upload.then(function (response) {
                     $timeout(function () {
                         file.result = response.data;
                         console.log(response.data);
-                        $scope.job.image = "/images/avatars/"+response.data.imgName;
+                        $scope.job.image = "/uploads/"+response.data.name;
                     });
                 }, function (response) {
                     if (response.status > 0)

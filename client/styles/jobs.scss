@@ -106,7 +106,13 @@
     }
 
     .job-apply {
+      .modal-content {
+        padding: 20px;
 
+        .controls {
+          padding-bottom: 10px;
+        }
+      }
     }
   }
 

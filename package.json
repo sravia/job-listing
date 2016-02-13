@@ -2,19 +2,20 @@
   "name": "joblisting",
   "version": "1.0.0",
   "dependencies": {
+    "body-parser": "latest",
+    "connect-mongo": "latest",
+    "connect-multiparty": "latest",
+    "cookie-parser": "latest",
+    "ejs": "latest",
     "express": "latest",
     "express-session": "latest",
-    "body-parser": "latest",
-    "passport": "latest",
-    "passport-local": "latest",
+    "method-override": "latest",
     "mongoose": "latest",
-    "ejs": "latest",
-    "underscore": "latest",
-    "connect-mongo": "latest",
     "morgan": "latest",
     "node-sass-middleware": "latest",
-    "method-override": "latest",
-    "cookie-parser": "latest",
-    "connect-multiparty": "latest"
+    "nodemon": "^1.8.1",
+    "passport": "latest",
+    "passport-local": "latest",
+    "underscore": "latest"
   }
 }

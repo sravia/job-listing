@@ -10,13 +10,13 @@ var ApplicationSchema = new Schema({
     date: {
         type: Date
     },
-    applicationName: {
-        type: String
-    },
     name: {
         type: String
     },
-    surname: {
+    email: {
+        type: String
+    },
+    cv: {
         type: String
     }
 });

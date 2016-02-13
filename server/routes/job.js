@@ -15,8 +15,9 @@ router.param('jobId', function(req, res, next, id) {
 });
 
 router.route('/jobs').post(function(req, res) {
-    console.log("post");
     var newJob = new Job(req.body);
+    console.log(req.body);
+
     newJob.save(function(err) {
         if (err) {
             res.json(500, err);
@@ -86,18 +87,18 @@ router.route('/jobs').get(function(req, res) {
 });
 
 // TODO - Refactor this disaster - expressjs multiple optional parameters not allowed?
-router.route('/jobs/:start/:end/:keywords/:location/:professions/:worktime').get(function(req, res) {
+router.route('/jobs/:start/:end/:keywords/:location/:professions/:workTimeId').get(function(req, res) {
     var keywords = req.params.keywords == "null" ? "" : req.params.keywords;
     var location = req.params.location == "null" ? "" : req.params.location;
     var professions = req.params.professions == "null" ? { $ne: "null"} : { $in : req.params.professions.split(',')  };
-    var worktime = req.params.worktime == "null" ? { $ne: "-1"} : { $in : req.params.worktime.split(',')  };
+    var workTimeId = req.params.workTimeId == "null" ? { $ne: "-1"} : { $in : req.params.workTimeId.split(',')  };
     Job.find({ 'profession': new RegExp(keywords, 'i'),
         'location' : new RegExp(location, 'i'),
         'categoryId' : professions,
-        'workTimeId' : worktime  })
+        'workTimeId' : workTimeId  })
         .sort('-created')
-        .skip(req.params.start)
-        .limit(req.params.end)
+        .skip(Number(req.params.start))
+        .limit(Number(req.params.end))
         .exec(function(err, jobs) {
         if (err) {
             res.json(500, err);
@@ -108,15 +109,15 @@ router.route('/jobs/:start/:end/:keywords/:location/:professions/:worktime').get
 });
 
 // TODO - Refactor this disaster - expressjs multiple optional parameters not allowed?
-router.route('/jobs/count/:keywords/:location/:professions/:worktime').get(function(req, res) {
+router.route('/jobs/count/:keywords/:location/:professions/:workTimeId').get(function(req, res) {
     var keywords = req.params.keywords == "null" ? "" : req.params.keywords;
     var location = req.params.location == "null" ? "" : req.params.location;
     var professions = req.params.professions == "null" ? { $ne: "null"} : { $in : req.params.professions.split(',')  };
-    var worktime = req.params.worktime == "null" ? { $ne: "-1"} : { $in : req.params.worktime.split(',')  };
+    var workTimeId = req.params.workTimeId == "null" ? { $ne: "-1"} : { $in : req.params.workTimeId.split(',')  };
     Job.find({ 'profession': new RegExp(keywords, 'i'),
         'location' : new RegExp(location, 'i'),
         'categoryId' : professions,
-        'workTimeId' : worktime  })
+        'workTimeId' : workTimeId  })
         .count(function(err, count) {
             if (err) {
                 res.json(500, err);
@@ -141,8 +142,8 @@ router.route('/jobs/count/:creator').get(function(req, res) {
 router.route('/jobs/:start/:end/:creator').get(function(req, res) {
     Job.find({ 'user': req.params.creator})
         .sort('-created')
-        .skip(req.params.start)
-        .limit(req.params.end)
+        .skip(Number(req.params.start))
+        .limit(Number(req.params.end))
         .exec(function(err, jobs) {
             if (err) {
                 res.json(500, err);
@@ -150,14 +151,6 @@ router.route('/jobs/:start/:end/:creator').get(function(req, res) {
                 res.json(jobs);
             }
         });
-});
-
-
-router.route('/upload').post(function(req, res) {
-    var file = req.files.file;
-    res.jsonp({
-        imgName: file.name
-    });
 });
 
 module.exports = router;

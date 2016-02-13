@@ -25,7 +25,35 @@
             <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
-                        ...
+                        <form ng-submit="apply(job._id)">
+                            <div class="form-group">
+                                <label class="control-label" for="applyName">Jūsu vārds un uzvārds</label>
+                                <div class="controls">
+                                    <input type="text" required ng-model="applyName" class="form-control" id="applyName" required="" class="form-control">
+                                </div>
+                                <label class="control-label" for="applyEmail">E-pasts</label>
+                                <div class="controls">
+                                    <input type="text" required ng-model="applyEmail" class="form-control" id="applyEmail" required="" class="form-control">
+                                </div>
+                                <div class="image">
+                                    <label class="control-label" for="inputCV">CV</label>
+                                    <button type="file" id="inputCV" ngf-select="uploadFiles($file, $invalidFiles)"
+                                             ngf-max-size="5MB">
+                                        Izvēlēties failu</button>
+                                    <br>
+                                    <span>{{applyFileName}}</span>
+                                    <p class="help-block"
+                                       ng-show="errorMessage">
+                                        {{errorMessage}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="controls">
+                                    <button type="submit" class="btn btn-primary pull-right">Pieteikties</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
