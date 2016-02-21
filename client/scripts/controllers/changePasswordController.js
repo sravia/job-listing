@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobs')
-    .controller('RetrievePasswordController', function ($scope,User, Auth, $location) {
+    .controller('ChangePasswordController', function ($scope,User, Auth, $location) {
         $scope.errorMessage = "";
         $scope.passwords = {
             password : "",

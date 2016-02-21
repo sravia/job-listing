@@ -62,6 +62,14 @@ angular.module('jobs', [
                 authorization: false
             }
         })
+        .state('jobs.applications', {
+            url: '/applications/:jobId',
+            templateUrl: 'views/jobs/applications.html',
+            controller: 'ApplicationsController',
+            data: {
+                authorization: true
+            }
+        })
         .state('login', {
             url: '/login',
             templateUrl: 'views/login.html',
@@ -78,10 +86,10 @@ angular.module('jobs', [
                 authorization: false
             }
         })
-        .state('retrievepassword', {
-            url: '/retrievepassword',
-            templateUrl: 'views/retrievepassword.html',
-            controller: 'RetrievePasswordController',
+        .state('changepassword', {
+            url: '/changepassword',
+            templateUrl: 'views/changepassword.html',
+            controller: 'ChangePasswordController',
             data: {
                 authorization: true
             }

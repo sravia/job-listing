@@ -38,9 +38,19 @@ router.route('/:applicationId').delete(function(req, res) {
     });
 });
 
-router.route('/:applicationId').get(function(req, res) {
-    res.json(req.application);
+router.route('/job/:jobId').get(function(req, res) {
+    var jobId = req.params.jobId;
+    Application.find({ 'jobId': jobId})
+        .sort('-created')
+        .exec(function(err, applications) {
+            if (err) {
+                res.json(500, err);
+            } else {
+                res.json(applications);
+            }
+    });
 });
+
 
 router.route('/').get(function(req, res) {
     Application.find().sort('-created').exec(function(err, applications) {
