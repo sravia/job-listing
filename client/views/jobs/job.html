@@ -20,12 +20,20 @@
         <div class="job-content" ng-bind-html="job.description">
         </div>
         <div class="job-apply">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Pieteikties</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".applicationModal">Pieteikties</button>
 
-            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal fade successApplication">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
-                        <form ng-submit="apply(job._id)">
+                        <p>Pieteikums nosūtīts!</p><br>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>Aizvērt</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade applicationModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <form ng-submit="apply()">
                             <div class="form-group">
                                 <label class="control-label" for="applyName">Jūsu vārds un uzvārds</label>
                                 <div class="controls">
@@ -41,7 +49,7 @@
                                              ngf-max-size="5MB">
                                         Izvēlēties failu</button>
                                     <br>
-                                    <span>{{applyFileName}}</span>
+                                    <span ng-show="applyFileName">Ielādēts: {{applyFileName}}</span>
                                     <p class="help-block"
                                        ng-show="errorMessage">
                                         {{errorMessage}}
@@ -51,6 +59,7 @@
                             <div class="form-group">
                                 <div class="controls">
                                     <button type="submit" class="btn btn-primary pull-right">Pieteikties</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Aizvērt</button>
                                 </div>
                             </div>
                         </form>
