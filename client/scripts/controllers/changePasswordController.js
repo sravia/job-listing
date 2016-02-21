@@ -16,7 +16,7 @@ angular.module('jobs')
             }
         });
 
-        $scope.retrievepassword = function(){
+        $scope.changepassword = function(){
             if($scope.errorMessage == "" && $scope.passwords.secondPassword != ""){
                 User.update({
                     password: $scope.passwords.password

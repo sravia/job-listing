@@ -5,7 +5,8 @@ angular.module('jobs')
     $scope.register = function(form) {
       Auth.createUser({
           email: $scope.user.email,
-          password: $scope.user.password
+          password: $scope.user.password,
+          recoverycode : $scope.user.recoverycode
         },
         function(err) {
           $scope.errors = {};

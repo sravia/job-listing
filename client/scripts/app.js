@@ -93,6 +93,14 @@ angular.module('jobs', [
             data: {
                 authorization: true
             }
+        })
+        .state('retrievepassword', {
+            url: '/retrievepassword',
+            templateUrl: 'views/retrievepassword.html',
+            controller: 'RetrievePasswordController',
+            data: {
+                authorization: false
+            }
         });
 
         uibPaginationConfig.previousText="‹";

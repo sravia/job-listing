@@ -10,6 +10,7 @@ var UserSchema = new Schema({
     unique: true,
     required: true
   },
+  recoverycode: String,
   hashedPassword: String,
   salt: String,
   admin: Boolean,

@@ -7,3 +7,13 @@
   margin: 0 auto;
   margin-top: 50px;
 }
+
+.changePasswordModal,.successChange{
+  .modal-content{
+    padding:20px;
+
+    input {
+      margin-bottom: 20px;
+    }
+  }
+}

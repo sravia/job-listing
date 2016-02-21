@@ -44,6 +44,29 @@ passport.use(new LocalStrategy({
     }
 ));
 
+router.route('/changepassword/:userId/:password').get(function(req, res) {
+    var password = req.params.password;
+    var userId = req.params.userId;
+
+    User.findById(ObjectId(userId), function (err, user) {
+        if (err) {
+            return next(new Error('Failed to load User'));
+        }
+        if (user) {
+            user.password = password;
+            user.save(function(err){
+                if(err){
+                    console.log(err);
+                }else {
+                    return res.json(user);
+                }
+            })
+        } else {
+            res.send(404, 'USER_NOT_FOUND')
+        }
+    });
+});
+
 router.route('/users').put(function(req, res) {
     var password = req.body.password;
     var user = req.user;
@@ -85,6 +108,25 @@ router.route('/users/:userId').get(function(req, res) {
             res.send({username: user.username, profile: user.profile });
         } else {
             res.send(404, 'USER_NOT_FOUND')
+        }
+    });
+});
+
+router.route('/recoverpassword/:email/:recoverycode').get(function(req, res) {
+    var email = req.params.email;
+    var recoverycode = req.params.recoverycode;
+
+    User.findOne({ email : email,
+            recoverycode : recoverycode}, function (err, user) {
+        if (err) {
+            return next(new Error('Failed to load email ' + email));
+        }
+
+        if(user) {
+            res.json({exists: true,
+            userId : user._id});
+        } else {
+            res.json({exists: false});
         }
     });
 });

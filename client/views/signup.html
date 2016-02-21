@@ -51,6 +51,22 @@
                     </p>
                 </div>
 
+                <div class="form-group">
+                    <input class="form-control"
+                           placeholder="Paroles atgūšanas kods"
+                           type="recoverycode"
+                           name="recoverycode"
+                           ng-model="user.recoverycode"
+                           ng-minlength="2"
+                           required/>
+                    <p class="help-block"
+                       ng-show="(form.recoverycode.$error.minlength || form.recoverycode.$invalid)
+                                && form.recoverycode.$dirty
+                                && !form.recoverycode.$error.required">
+                        Paroles atgūšanas kodam jābūt vismaz 2 simbolus garam
+                    </p>
+                </div>
+
                 <button class="btn btn-lg btn-primary btn-block"
                         type="submit"
                         ng-disabled="form.$invalid">Reģistrēties</button>
