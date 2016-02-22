@@ -100,9 +100,12 @@
     }
 
     .job-content {
-       margin: 20px 0;
+      margin: 20px 0;
       color: #8c8d90;
       line-height: 24px;
+      img {
+        text-align:center;
+      }
     }
 
     .job-apply {

@@ -9,11 +9,19 @@ angular.module('jobs')
             return $rootScope.currentUser;
         },
 
+        isAdmin: function() {
+            if($rootScope.currentUser == null){
+                return false;
+            }
+            return $rootScope.currentUser.admin;
+        },
+
         login: function(provider, user, callback) {
             var cb = callback || angular.noop;
             Session.save({
                 provider: provider,
                 email: user.email,
+                admin: user.admin,
                 password: user.password,
                 rememberMe: user.rememberMe
             }, function(user) {

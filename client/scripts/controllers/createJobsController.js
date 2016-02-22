@@ -45,6 +45,9 @@ angular.module('jobs')
         };
 
         $scope.create = function() {
+            var expireDate = new Date();
+            expireDate.setDate(expireDate.getDate() + $scope.expireDays[this.expireDay].count);
+
             var job = new Jobs({
                 user: Auth.getUser()._id,
                 categoryId: this.category,
@@ -54,7 +57,8 @@ angular.module('jobs')
                 location: this.location,
                 description: this.description,
                 image: this.imageUrl,
-                expireDays: $scope.expireDays[this.expireDay].id,
+                expireDay: expireDate,
+                expireDaysId : $scope.expireDays[this.expireDay].id,
                 date: new Date()
             });
             job.$save(function(response) {

@@ -95,7 +95,10 @@ router.route('/jobs/:start/:end/:keywords/:location/:professions/:workTimeId').g
     Job.find({ 'profession': new RegExp(keywords, 'i'),
         'location' : new RegExp(location, 'i'),
         'categoryId' : professions,
-        'workTimeId' : workTimeId  })
+        'workTimeId' : workTimeId ,
+        'expireDay' : {
+            '$gt': new Date()
+        }})
         .sort('-created')
         .skip(Number(req.params.start))
         .limit(Number(req.params.end))
@@ -117,7 +120,10 @@ router.route('/jobs/count/:keywords/:location/:professions/:workTimeId').get(fun
     Job.find({ 'profession': new RegExp(keywords, 'i'),
         'location' : new RegExp(location, 'i'),
         'categoryId' : professions,
-        'workTimeId' : workTimeId  })
+        'workTimeId' : workTimeId,
+        'expireDay' : {
+            '$gt' : new Date()
+        }})
         .count(function(err, count) {
             if (err) {
                 res.json(500, err);

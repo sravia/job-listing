@@ -31,6 +31,9 @@ var JobSchema = new Schema({
     date: {
         type: Date
     },
+    expireDay: {
+        type: Date
+    },
     expireDaysId: {
         type: Number
     }

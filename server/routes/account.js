@@ -84,6 +84,7 @@ router.route('/users').put(function(req, res) {
 router.route('/users').post(function(req, res) {
     var newUser = new User(req.body);
     newUser.provider = 'local';
+    newUser.admin = false;
 
     newUser.save(function(err) {
         if (err) {

@@ -3,7 +3,7 @@
 angular.module('jobs')
     .controller('allJobsController', function ($scope,Jobs,$location, Auth,$http,$stateParams, WorkTimes,$rootScope) {
         $scope.currentPage = 1;
-        $scope.itemsPerPage = 2;
+        $scope.itemsPerPage = 4;
         $scope.totalItems = 1;
 
         $scope.getWorkTime = function(_id) {

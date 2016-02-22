@@ -7,7 +7,7 @@ angular.module('jobs')
         $scope.keywords = "";
         $scope.location = "";
         $scope.currentPage = 1;
-        $scope.itemsPerPage = 2;
+        $scope.itemsPerPage = 4;
         $scope.totalItems = 1;
 
         //addDays(new Date(),

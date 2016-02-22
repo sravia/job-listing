@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jobs')
-    .controller('JobController', function ($scope, Jobs,$stateParams, WorkTimes,moment,Upload,$timeout,Applications) {
+    .controller('JobController', function ($scope, Jobs,$stateParams,$location, WorkTimes,moment,Upload,Auth,$timeout,Applications) {
         $scope.worktimes = WorkTimes.getWorkTimes();
         $scope.date = "";
         $scope.applyName = "";
@@ -9,6 +9,14 @@ angular.module('jobs')
         $scope.applyFileUrl = "";
         $scope.applyFileName = "";
         $scope.errorMessage = "";
+        $scope.isAdmin = Auth.isAdmin();
+
+        $scope.delete = function() {
+            var job = new Jobs($scope.job);
+            job.$remove(function() {
+                $location.path("jobs");
+            });
+        };
 
         Jobs.get({
                 jobId: $stateParams.jobId
